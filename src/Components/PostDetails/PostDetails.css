@@ -1,0 +1,11 @@
+.post-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 10%;
+}
+
+.posts-button-add-new {
+    padding: 2%;
+}
+

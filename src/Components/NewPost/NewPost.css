@@ -1,0 +1,8 @@
+.NewPost-body {
+    border-style: none;
+    outline: none;
+    width: 500vw;
+    min-height: 20vw;
+    font-size:  1.08em;
+    resize: none;
+}
