@@ -21,4 +21,6 @@
     width: 95vw;
     min-height: 3vw;
     font-size:  1em;
+    word-break: break-all;
 }
+

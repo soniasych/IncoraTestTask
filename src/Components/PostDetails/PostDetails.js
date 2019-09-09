@@ -13,32 +13,42 @@ export class Post extends Component {
 
         console.log('props', props)
         this.state = {
-            postInfo: [],
+            postInfo: {},
             comments: [],
-            title: "",
-            body: ""    
+            title: '',
+            body: ''   
             
         };
         this.onTextChangeTitle = this.onTextChangeTitle.bind(this);
         this.onTextChangeBody = this.onTextChangeBody.bind(this);
+        //this.handleInputChange = this.handleInputChange.bind(this);
+        this.DeletePost = this.DeletePost.bind(this);
+        this.EditPost = this.EditPost.bind(this);
     }
 
     onTextChangeTitle = event => {
+        console.log( event.target.value);
         this.setState({title: event.target.value});
+        
     }
 
     onTextChangeBody = event => {
+        console.log( event.target.value);
         this.setState({body: event.target.value});
     }
 
+    // handleInputChange(e) {
+    //     this.setState({
+    //         [e.target.name]: e.target.value
+    //     });
+    // }
 
     componentDidMount() {
         this.getPostInfo();
         this.getComments();
     }    
 
-    render() {
-        
+    render() {        
         return (
         <div>
             <Card>
@@ -46,13 +56,19 @@ export class Post extends Component {
                 <Card.Body className="post-details">
                     <Card.Title>
                         <label>Title</label>
-                        <input name="title" type="text" value={this.state.postInfo.title} onChange={this.onTextChangeTitle}></input>
+                        <input name="title" 
+                        type="text" 
+                        defaultValue={this.state.postInfo.title}
+                        onChange={this.onTextChangeTitle}></input>
                     </Card.Title>
                     <Card.Text>
                         <label>Body</label>
-                    <textarea name="body" type="text" value={this.state.postInfo.body} onChange={this.onTextChangeBody}/>
+                        <textarea 
+                        name="body"
+                        value={`${this.state.body}`}
+                        onChange={(event) => this.onTextChangeBody(event)}/>
                     </Card.Text>
-                    <div className="post-buttons">
+                        <div className="post-buttons">
                         <Button variant="primary" onClick={this.EditPost}>Edit</Button>
                         <Button variant="primary" onClick={this.DeletePost}>Delete</Button>
                     </div>
@@ -83,9 +99,8 @@ export class Post extends Component {
     async getPostInfo() {
         const id = this.props.match.params.id;
         const response = await Axios.get(`https://jsonplaceholder.typicode.com/posts/${id}`);
-        const data = await response.data;
-        this.setState({postInfo: data});
-        console.log(data);
+        const postData = await response.data;
+        this.setState({postInfo: postData, body: postData.body});
         console.log(this.state.postInfo);
     }
 
@@ -98,24 +113,24 @@ export class Post extends Component {
         console.log(this.state.comments);
     }
 
-    // async DeletePost(){
-    //     const postId = this.props.match.params.id;
-    //     Axios.delete(`https://jsonplaceholder.typicode.com/posts/${postId}`)
-    //                 .then(response => {
-    //                     console.log(response);
-    //                 });
-    // }
+    async DeletePost(){
+        const postId = this.props.match.params.id;
+        Axios.delete(`https://jsonplaceholder.typicode.com/posts/${postId}`)
+                    .then(response => {
+                        console.log(response);
+                    });
+    }
 
-    // async EditPost(){
-    //     //const postId = this.props.match.params.id;
-    //     //const postId = this.props.postId;
-    //      const data = {
-    //         //postId: this.props.match.params.id,
-    //         title: this.state.title,
-    //         body: this.state.postInfo.body
-    //     };
-    //     Axios.put(`https://jsonplaceholder.typicode.com/posts/`, data);
-    //     console.log(data);        
-    // }
+    async EditPost(){
+        const postId = this.props.match.params.id;
+        //const postId = this.props.postId;
+         const data = {
+            postId: postId,
+            title: this.state.postInfo.title,
+            body: this.state.postInfo.body
+        };
+        Axios.put(`https://jsonplaceholder.typicode.com/posts/${postId}`, data);
+        console.log(data);        
+    }
 
 }
