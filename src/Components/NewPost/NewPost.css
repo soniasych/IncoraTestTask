@@ -1,8 +1,22 @@
-.NewPost-body {
+.NewPost textarea{
     border-style: none;
     outline: none;
-    width: 500vw;
+    width: 35vw;
     min-height: 20vw;
-    font-size:  1.08em;
+    font-size:  1em;
     resize: none;
+}
+
+.NewPost input{
+    border-style: none;
+    width: 34.5vw;
+    min-height: 2vw;
+    font-size:  1em;
+}
+
+.new-post-buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 30%;
 }

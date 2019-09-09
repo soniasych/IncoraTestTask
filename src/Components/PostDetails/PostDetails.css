@@ -9,3 +9,16 @@
     padding: 2%;
 }
 
+.post-details textarea{
+    outline: none;
+    width: 95vw;
+    min-height: 20vw;
+    font-size:  1em;
+    resize: none;
+}
+
+.post-details input{
+    width: 95vw;
+    min-height: 3vw;
+    font-size:  1em;
+}

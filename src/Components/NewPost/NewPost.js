@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Axios from 'axios';
 import { Link } from 'react-router-dom';
 import '../NewPost/NewPost.css';
+import { Button } from 'react-bootstrap';
 import {
     Modal
     , ModalBody
@@ -50,18 +51,20 @@ export class NewPost extends Component{
                 <div className="NewPost">
                     <div>
                         <label>Title</label>
-                        <input name="title" type="text" value={this.state.title} onChange={this.onTextChangeTitle} placeholder="Add description..."/>
+                        <input name="title" type="text" value={this.state.title} onChange={this.onTextChangeTitle} placeholder="Add title..."/>
                     </div>
                     <div>
-                        <textarea name="body" type="text" className="NewPost-body" value={this.state.body} onChange={this.onTextChangeBody} placeholder="Add body..."/>
+                    <   label>Body</label>
+                        <textarea name="body" type="text" value={this.state.body} onChange={this.onTextChangeBody} placeholder="Add body..."/>
                     </div>
-                    <button onClick={this.postDataHandler}>
+                    <div className="new-post-buttons">
+                    <Button variant="primary" onClick={this.postDataHandler}>
                         Post
-                    </button>
-                    <button onClick={this.props.close}>
+                    </Button>
+                    <Button variant="primary" onClick={this.props.close}>
                         Close
-                    </button>
-
+                    </Button>
+                    </div>
                 </div>
             </ModalBody>
         </Modal>

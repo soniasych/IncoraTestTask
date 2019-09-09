@@ -43,11 +43,13 @@ export class Post extends Component {
         <div>
             <Card>
                 <Card.Header>Post</Card.Header>
-                <Card.Body>
+                <Card.Body className="post-details">
                     <Card.Title>
+                        <label>Title</label>
                         <input name="title" type="text" value={this.state.postInfo.title} onChange={this.onTextChangeTitle}></input>
                     </Card.Title>
                     <Card.Text>
+                        <label>Body</label>
                     <textarea name="body" type="text" value={this.state.postInfo.body} onChange={this.onTextChangeBody}/>
                     </Card.Text>
                     <div className="post-buttons">
